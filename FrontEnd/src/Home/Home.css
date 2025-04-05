@@ -1,0 +1,64 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    font-size: 50px;
+}
+
+.add {
+    padding-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    height: 40px;
+    width: 400px;
+    padding-left: 10px;
+    font-size: 17px;
+    border: 1px solid black;
+}
+
+.btnAdd {
+    height: 40px;
+    width: 70px;
+    font-size: 17px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+table {
+    width: 40%;
+}
+
+table, tr, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 7px;
+}
+
+td {
+    text-align: center;
+}
+
+th:nth-child(1), td:nth-child(1) { width: 10%; }
+th:nth-child(2), td:nth-child(2) { width: 60%; } 
+th:nth-child(3), td:nth-child(3) { width: 10%; } 
+th:nth-child(4) { width: 20%; } 
+
+
