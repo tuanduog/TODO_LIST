@@ -1,5 +1,5 @@
 import React from "react";
-import '../Home/Home.css';
+import home from '../Home/Home.module.css';
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { useState, useEffect } from "react";
@@ -7,7 +7,6 @@ import axios from 'axios';
 
 function Home () {
     const [work, setWork] = useState("");
-
     const [works, setWorks] = useState([]);
     const [isFix, setIsFix] = useState(false);
     const [workFix, setWorkFix] = useState("");
@@ -16,7 +15,7 @@ function Home () {
 
     const handleAdd = async () => {
         const newWork = {work, done: false};
-        const res = await axios.post('http://localhost:5000/api/add-work', newWork);
+        const res = await axios.post('http://localhost:5000/api/work/add-work', newWork, {withCredentials: true});
         console.log("Added ok", res.data);
         alert("Added work successfully!");
         setWork("");
@@ -24,7 +23,7 @@ function Home () {
     }
 
     const fetchWork = async () => {
-        const response = await axios.get('http://localhost:5000/api/get-work');
+        const response = await axios.get('http://localhost:5000/api/work/get-work', {withCredentials: true});
         setWorks(response.data.works);
     }
     
@@ -33,7 +32,7 @@ function Home () {
     }, [])
 
     const handleDelete = async (id) => {
-        const res = await axios.delete(`http://localhost:5000/api/delete-work/${id}`);
+        const res = await axios.delete(`http://localhost:5000/api/work/delete-work/${id}`, {withCredentials: true});
         console.log(res.data);
         alert("Delete successfully!");
         fetchWork();
@@ -47,7 +46,7 @@ function Home () {
 
     const handleChange = async () => {
         const wf = { work: workFix, done: doneFix};
-        const res = await axios.put(`http://localhost:5000/api/change-work/${idFix}`, wf);
+        const res = await axios.put(`http://localhost:5000/api/work/change-work/${idFix}`, wf, {withCredentials: true});
         console.log(res.data);
         alert("Changed successfully!");
         fetchWork();
@@ -56,11 +55,13 @@ function Home () {
     return (
         <>
             <h1>To-do list</h1>
-            <div className="add">
-                <input placeholder="Enter a work need to do" value={work} onChange={(e) => setWork(e.target.value)}></input>
-                <button className="btnAdd" onClick={handleAdd}>Add</button>
+            <div className={home.add}>
+          
+                <input className={home.homeinp} placeholder="Enter a work need to do" value={work} onChange={(e) => setWork(e.target.value)}></input>
+         
+                <button className={home.btnAdd} onClick={handleAdd}>Add</button>
             </div>
-            <div className="list">
+            <div className={home.list}>
                 <table>
                     <caption style={{fontSize: '25px', paddingBottom: '5px'}}><strong>List of work</strong></caption>
                     <tr>
